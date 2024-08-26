@@ -1,0 +1,8 @@
+github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
+github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
+github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
+github.com/mnaufalhilmym/goasync v0.0.9 h1:MFZnFC9Nrjbq4r7+xtMkQdZso3SUFqSzfDuxMHVC1/8=
+github.com/mnaufalhilmym/goasync v0.0.9/go.mod h1:kqhmIFDAbOor3WD1HaIKyG4vCU2dhdXX5NbZkr80KXY=
+github.com/mnaufalhilmym/goresult v0.0.4 h1:DFNox/3ik8F4gop10Py1gRShedN7rG+TDNy/yY0jopg=
+github.com/mnaufalhilmym/goresult v0.0.4/go.mod h1:HZ7MaeAA167j1oFwSrN1aV5+d9chApMYgVEZS2hUyss=
