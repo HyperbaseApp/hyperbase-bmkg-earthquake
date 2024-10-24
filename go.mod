@@ -1,4 +1,4 @@
-module bmkgscraper
+module bmkgearthquakecollector
 
 go 1.23.0
 

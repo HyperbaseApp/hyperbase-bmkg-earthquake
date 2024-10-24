@@ -1,9 +1,9 @@
 package main
 
 import (
-	hyperbaseclient "bmkgscraper/hyperbase"
-	"bmkgscraper/model"
-	"bmkgscraper/scraper"
+	"bmkgearthquakecollector/collector"
+	hyperbaseclient "bmkgearthquakecollector/hyperbase"
+	"bmkgearthquakecollector/model"
 	"context"
 	"errors"
 	"log"
@@ -57,13 +57,13 @@ func scheduler(d time.Duration, hyperbaseCollection *hyperbaseclient.HyperbaseCo
 		<-ticker.C // Waiting for the next schedule to run
 
 		autoGempaTask := goasync.Spawn(func(ctx context.Context) (*model.AutoGempaModel, error) {
-			return scraper.AutoGempa()
+			return collector.AutoGempa()
 		})
 		gempaTerkiniTask := goasync.Spawn(func(ctx context.Context) (*model.DataModel, error) {
-			return scraper.GempaTerkini()
+			return collector.GempaTerkini()
 		})
 		gempaDirasakanTask := goasync.Spawn(func(ctx context.Context) (*model.DataModel, error) {
-			return scraper.GempaDirasakan()
+			return collector.GempaDirasakan()
 		})
 
 		autoGempaData, err := autoGempaTask.Await(context.Background())

@@ -7,26 +7,7 @@ type AutoGempaModel struct {
 }
 
 func (a *AutoGempaModel) ToMap() map[string]any {
-	return map[string]any{
-		"tanggal":     a.Infogempa.Gempa.Tanggal,
-		"jam":         a.Infogempa.Gempa.Jam,
-		"datetime":    a.Infogempa.Gempa.DateTime,
-		"coordinates": a.Infogempa.Gempa.Coordinates,
-		"lintang":     a.Infogempa.Gempa.Lintang,
-		"bujur":       a.Infogempa.Gempa.Bujur,
-		"magnitude":   a.Infogempa.Gempa.Magnitude,
-		"kedalaman":   a.Infogempa.Gempa.Kedalaman,
-		"wilayah":     a.Infogempa.Gempa.Wilayah,
-		"potensi":     a.Infogempa.Gempa.Potensi,
-		"dirasakan":   a.Infogempa.Gempa.Dirasakan,
-		"shakemap":    a.Infogempa.Gempa.Shakemap,
-		"shakemap_url": func() string {
-			if a.Infogempa.Gempa.Shakemap != "" {
-				return "https://data.bmkg.go.id/DataMKG/TEWS/" + a.Infogempa.Gempa.Shakemap
-			}
-			return ""
-		}(),
-	}
+	return a.Infogempa.Gempa.ToMap()
 }
 
 type DataModel struct {
@@ -36,26 +17,7 @@ type DataModel struct {
 func (d *DataModel) ToSliceOfMap() []map[string]any {
 	data := make([]map[string]any, 0, len(d.Infogempa.Gempa))
 	for _, g := range d.Infogempa.Gempa {
-		data = append(data, map[string]any{
-			"tanggal":     g.Tanggal,
-			"jam":         g.Jam,
-			"datetime":    g.DateTime,
-			"coordinates": g.Coordinates,
-			"lintang":     g.Lintang,
-			"bujur":       g.Bujur,
-			"magnitude":   g.Magnitude,
-			"kedalaman":   g.Kedalaman,
-			"wilayah":     g.Wilayah,
-			"potensi":     g.Potensi,
-			"dirasakan":   g.Dirasakan,
-			"shakemap":    g.Shakemap,
-			"shakemap_url": func() string {
-				if g.Shakemap != "" {
-					return "https://data.bmkg.go.id/DataMKG/TEWS/" + g.Shakemap
-				}
-				return ""
-			}(),
-		})
+		data = append(data, g.ToMap())
 	}
 	return data
 }
@@ -81,4 +43,27 @@ type GempaModel struct {
 	Potensi     string    `json:"Potensi"`     // ex: Gempa ini dirasakan untuk diteruskan pada masyarakat
 	Dirasakan   string    `json:"Dirasakan"`   // ex: III-IV Kota Bengkulu, III-IV Bengkulu Utara, III Kaur, II - III Empat Lawang, II - III Pagar Alam
 	Shakemap    string    `json:"Shakemap"`    // ex: 20240824235434.mmi.jpg
+}
+
+func (g *GempaModel) ToMap() map[string]any {
+	return map[string]any{
+		"tanggal":     g.Tanggal,
+		"jam":         g.Jam,
+		"datetime":    g.DateTime,
+		"coordinates": g.Coordinates,
+		"lintang":     g.Lintang,
+		"bujur":       g.Bujur,
+		"magnitude":   g.Magnitude,
+		"kedalaman":   g.Kedalaman,
+		"wilayah":     g.Wilayah,
+		"potensi":     g.Potensi,
+		"dirasakan":   g.Dirasakan,
+		"shakemap":    g.Shakemap,
+		"shakemap_url": func() string {
+			if g.Shakemap != "" {
+				return "https://data.bmkg.go.id/DataMKG/TEWS/" + g.Shakemap
+			}
+			return ""
+		}(),
+	}
 }

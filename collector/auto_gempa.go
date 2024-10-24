@@ -1,7 +1,7 @@
-package scraper
+package collector
 
 import (
-	"bmkgscraper/model"
+	"bmkgearthquakecollector/model"
 	"encoding/json"
 	"errors"
 	"io"

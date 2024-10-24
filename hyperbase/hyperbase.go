@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 	"strings"
@@ -142,10 +143,10 @@ func (hc *HyperbaseCollection) InsertOne(data map[string]any) error {
 	}
 
 	if resp.StatusCode != http.StatusCreated {
-		if strings.HasPrefix(resData.Error.Message, "Duplicate value") {
+		if strings.Contains(strings.ToLower(resData.Error.Message), "duplicate") {
 			return ErrDuplicate
 		}
-		return errors.New("not created")
+		return fmt.Errorf("not created: %s", resData.Error.Message)
 	}
 
 	return nil
