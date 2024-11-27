@@ -2,6 +2,7 @@ package collector
 
 import (
 	"bmkgearthquakecollector/model"
+	"bytes"
 	"encoding/json"
 	"errors"
 	"io"
@@ -26,8 +27,10 @@ func GempaDirasakan() (*model.DataModel, error) {
 		return nil, errors.Join(errors.New(gempaDirasakanURL), err)
 	}
 
+	cleanedBody := bytes.ReplaceAll(body, []byte("\n"), []byte(" "))
+
 	var gempaTerkiniData model.DataModel
-	if err := json.Unmarshal(body, &gempaTerkiniData); err != nil {
+	if err := json.Unmarshal(cleanedBody, &gempaTerkiniData); err != nil {
 		return nil, errors.Join(errors.New(gempaDirasakanURL), err)
 	}
 

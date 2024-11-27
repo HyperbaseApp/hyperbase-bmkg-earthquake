@@ -2,6 +2,7 @@ package collector
 
 import (
 	"bmkgearthquakecollector/model"
+	"bytes"
 	"encoding/json"
 	"errors"
 	"io"
@@ -26,8 +27,10 @@ func AutoGempa() (*model.AutoGempaModel, error) {
 		return nil, errors.Join(errors.New(autoGempaURL), err)
 	}
 
+	cleanedBody := bytes.ReplaceAll(body, []byte("\n"), []byte(" "))
+
 	var autoGempaData model.AutoGempaModel
-	if err := json.Unmarshal(body, &autoGempaData); err != nil {
+	if err := json.Unmarshal(cleanedBody, &autoGempaData); err != nil {
 		return nil, errors.Join(errors.New(autoGempaURL), err)
 	}
 
